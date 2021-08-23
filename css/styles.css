@@ -7,7 +7,8 @@
 }
 
 :root {
-    --white: #ffffff;
+    --white: #ccc;
+    --black: #222;
 }
 
 html {
@@ -18,16 +19,23 @@ body {
     font-size: 1.4rem;
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    color: #222;
+    color: var(--black);
 }
 
 header {
-    height: 80vh;
+    position: relative;
+    height: 70vh;
+    background: linear-gradient(to right, rgba(0,0,0,.7), rgba(0,0,0,.8)), url(../img/hero.jpg);
 }
 
 .nav-bar {
     display: block;
     padding-left: .4rem;
+    padding-top: 1rem;
+}
+
+.nav-bar ul {
+    text-transform: uppercase;
 }
 
 .nav-bar ul li {
@@ -38,7 +46,133 @@ header {
     margin-left: 2rem;
 }
 
+.nav-bar ul li a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+.hero-container {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.hero-container h1,
+.hero-container h3 {
+    color: var(--white);
+}
+
+#hero-title {
+    font-size: 6rem;
+    font-weight: 300;
+}
+
+#hero-sub-title {
+    font-size: 2.2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: right
+}
+
+aside {
+    width: 15%;
+    display: block;
+}
+
+#filter-form {
+    display: block;
+}
+
+#filter-form .filter-league h4,
+#filter-form .filter-price h4,
+#filter-form .filter-word h4 {
+    margin-top: 5rem;
+    padding-left: .3rem;
+}
+
+.filter-league, 
+.filter-price, 
+.filter-word {
+    display: block;
+}
+
+.filter-league > label {
+    display: inline-block;
+    padding-left: .3rem;
+}
+
+.filter-league input {
+    margin-left: .5rem;
+}
+
+
+.filter-price label {
+    padding-left: .3rem;
+}
+
+.filter-price input {
+    background: red;
+    margin-top: 1rem;
+}
+
+.filter-word > input {
+    margin-top: 1rem;
+    margin-left: .3rem;
+}
+
+.main-container {
+    width: 80%;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: 22rem;
+    margin-top: -30rem;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+.product {
+    display: grid;
+    grid-template-rows: 5rem repeat(5, 3rem);
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    border: 1px solid var(--black);
+    padding: 1rem;
+}
 
 .product-img {
-    width: 20rem;
+    grid-row: 2 / 3;
+    justify-self: end;
+    grid-column: 1 / -1;
+    width: 14rem;
+    height: 10rem;
+}
+
+.product-desc {
+    grid-row: 4 / 5;
+    grid-column: 1 / -1;
+}
+
+.product-price {
+    grid-row: 5 / -1;
+    grid-column: 1 / 2;
+    justify-self: center;
+}
+
+.product-cart {
+    grid-row: 5 / -1;
+    grid-column: 2 / -1;
+}
+
+footer {
+    display: block;
+    height: 10vh;
+    background: linear-gradient(to right, rgba(0,0,0,.7), rgba(0,0,0,.8));
+    margin-top: 5rem;    
+}
+
+footer > p {
+    padding-top: 3rem;
+    color: var(--white);
 }

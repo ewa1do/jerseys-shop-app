@@ -21,65 +21,79 @@
             <ul>
                 <li><a href="#">item-1</a></li>
                 <li><a href="#">item-2</a></li>
+                <li>
+                    <form action="">
+                        <input type="text" name="user" id="user" placeholder="Username">
+                        <input type="password" name="pw" id="pw" placeholder="Password">
+                        <button>Sign-In</button>
+                    </form>
+                </li>
                 <li><a href="#">Sing-Up</a></li>
-                <li><a href="#">Sign-In</a></li>
                 <li><a href="#">Go to Cart</a></li>
             </ul>
         </nav>
         <div class="hero-container">
-            <h1>Football Warehouse</h1>
-            <h3>Wear the passion of you team!</h3>
+            <h1 id="hero-title">Football Warehouse</h1>
+            <h3 id="hero-sub-title">Wear the passion of your team!</h3>
         </div>
     </header>
     <main>
         <aside class="search-filters">
             <form id="filter-form">
-                <h4>League</h4>
-                <label for="">Premier League</label><input type="checkbox">
-                <label for="">Bundesliga</label><input type="checkbox">
-                <label for="">Ligue 1</label><input type="checkbox">
-                <label for="">Serie A</label><input type="checkbox">
-                <label for="">La Liga</label><input type="checkbox">
-                <h4>Price</h4>
-                <label for="price">Low To High</label><input type="radio" name='price'>
-                <label for="price">High To Low</label><input type="radio" name='price'>    
+                <div class="filter-league">
+                    <h4>League</h4>
+                    <label for="">Premier League</label><input type="checkbox"> <br>
+                    <label for="">Bundesliga</label><input type="checkbox"> <br>
+                    <label for="">Ligue 1</label><input type="checkbox"> <br>
+                    <label for="">Serie A</label><input type="checkbox"> <br>
+                    <label for="">La Liga</label><input type="checkbox"> <br>
+                </div>
+                <div class="filter-price">
+                    <h4>Price</h4>
+                    <label for="price">Low To High</label><input type="radio" name='price'> <br>
+                    <label for="price">High To Low</label><input type="radio" name='price'>    
+                </div>
+                <div class="filter-word">
+                    <h4>Search</h4>
+                    <input type="text" name="search-bar" id="search-bar" placeholder="Type something...">
+                </div>
             </form>
         </aside>
         <div class="main-container">
             <div class="product">
                 <img src="img/test-img.png" class="product-img">
                 <h5 class="product-desc">Product Description</h5>
-                <span class="product-price">Product Price</span>
+                <span class="product-price">$100</span>
                 <button class="product-cart">Add to Cart</button>
             </div>
             <div class="product">
                 <img src="img/test-img.png" class="product-img">
                 <h5 class="product-desc">Product Description</h5>
-                <span class="product-price">Product Price</span>
+                <span class="product-price">$100</span>
                 <button class="product-cart">Add to Cart</button>
             </div>
             <div class="product">
                 <img src="img/test-img.png" class="product-img">
                 <h5 class="product-desc">Product Description</h5>
-                <span class="product-price">Product Price</span>
+                <span class="product-price">$100</span>
                 <button class="product-cart">Add to Cart</button>
             </div>
             <div class="product">
                 <img src="img/test-img.png" class="product-img">
                 <h5 class="product-desc">Product Description</h5>
-                <span class="product-price">Product Price</span>
+                <span class="product-price">$100</span>
                 <button class="product-cart">Add to Cart</button>
             </div>
             <div class="product">
                 <img src="img/test-img.png" class="product-img">
                 <h5 class="product-desc">Product Description</h5>
-                <span class="product-price">Product Price</span>
+                <span class="product-price">$100</span>
                 <button class="product-cart">Add to Cart</button>
             </div>
             <div class="product">
                 <img src="img/test-img.png" class="product-img">
                 <h5 class="product-desc">Product Description</h5>
-                <span class="product-price">Product Price</span>
+                <span class="product-price">$100</span>
                 <button class="product-cart">Add to Cart</button>
             </div>
         </div>
