@@ -1,0 +1,71 @@
+@media only screen and (max-width: 1180px) {
+    html { font-size: 60.5%; }
+}
+
+@media only screen and (max-width: 1024px) {
+    html { font-size: 52.5%; }
+}
+
+@media only screen and (max-width: 960px) {
+    html { font-size: 47.5%; }
+
+    header { height: 50vh; }
+
+    footer { height: 7vh; }
+
+}
+
+@media only screen and (max-width: 768px) {
+    #hero-title { font-size: 5rem; }
+    #hero-sub-title { font-size: 2rem; }    
+
+    .main-container { 
+        grid-template-rows: repeat(3, 1fr); 
+        grid-template-columns: repeat(2, 1fr); 
+        width: 85%;
+        margin-left: 7.5%;
+        margin-top: 7rem;
+    }
+
+    #filter-form > div {
+        display: none;
+    }
+
+    #filter-form .filter-league h4,
+    #filter-form .filter-price h4,
+    #filter-form .filter-word h4 {
+        display: none;
+    }
+
+    .search-filters {
+        display: inline;
+        margin-left: 5rem;
+    }
+
+
+    .filter-league label, .filter-league input,
+    .filter-price label, .filter-price input { display: none; }
+}
+
+
+
+
+
+
+
+
+/* 
+1240
+1200
+1024
+960
+900
+840
+800
+768
+600
+500
+400
+300
+*/
+
