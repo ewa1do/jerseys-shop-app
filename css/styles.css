@@ -54,6 +54,22 @@ header {
     color: var(--white);
 }
 
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 4rem;
+    height: 2px;
+    margin: 4px auto;
+    /* transition: all 0.3s ease-in-out; */
+    transition: all 0.3s ease-in-out;
+    background-color: rgba(157, 152, 152, .9);
+    margin-right: 4rem;
+}
+
 .hero-container {
 position: absolute;
 top: 50%;

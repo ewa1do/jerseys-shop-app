@@ -47,25 +47,21 @@
     .filter-price label, .filter-price input { display: none; }
 }
 
+@media only screen and (max-width: 600px) {
+    .nav-bar > ul {
+        display: none;
+    }
 
+    .hamburger { display: block; }
 
+    header { height: 40vh; }
 
+    #hero-title { font-size: 4rem; }
+    #hero-sub-title { font-size: 1.5rem; }
 
-
-
-
-/* 
-1240
-1200
-1024
-960
-900
-840
-800
-768
-600
-500
-400
-300
-*/
-
+    .main-container {
+        grid-template-columns: repeat(1, 1fr);
+        width: 50%;
+        margin-left: 25%;
+    }
+} 
