@@ -1,0 +1,22 @@
+{
+  "name": "jerseys-shop-app",
+  "version": "1.0.0",
+  "description": "Shopping app using html, css and js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ewa1do/jerseys-shop-app.git"
+  },
+  "author": "waldinho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ewa1do/jerseys-shop-app/issues"
+  },
+  "homepage": "https://github.com/ewa1do/jerseys-shop-app#readme",
+  "devDependencies": {
+    "jshint": "^2.13.1"
+  }
+}
