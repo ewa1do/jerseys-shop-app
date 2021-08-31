@@ -2,7 +2,9 @@
 
 const usersDB = [
     {
+        name: 'Admin',
         username: 'admin',
+        email: 'admin@admin.com',
         password: 'admin',
     },
 ];
@@ -46,7 +48,7 @@ const jerseysDB = [
     },
 ];
 
-
+// index.html
 const userInput = document.querySelector('#user');
 const passwordInput = document.querySelector('#pw');
 const btnSignIn = document.querySelector('#btn-signin');
@@ -55,9 +57,19 @@ const mainContainerDiv = document.querySelector('.main-container');
 
 const mainWeb = document.querySelector('.main-web');
 
+// signup.html
+const signupBtn = document.querySelector('#signup-btn');
+const fullNameInput = document.querySelector('#full-name');
+const emailInput = document.querySelector('#email');
+const usernameInput = document.querySelector('#username');
+const passwordFormInput = document.querySelector('#password');
+
+
 class UI { 
     static hideWebPage () {
-        mainWeb.style.display = 'none';
+        if (mainWeb !== null) {
+            mainWeb.style.display = 'none';
+        }
     }
 
     static showWebPage () {
@@ -65,20 +77,22 @@ class UI {
     }
 
     static displayJerseys () {
-        jerseysDB.forEach(jersey => {
-            const jerseyHTML = 
-            `
-                <div class="product"> 
-                    <img src='${jersey.url}' class="product-img">
-                    <h5 class="product-desc">${jersey.description}</h5>
-                    <span class="product-price">${jersey.price}</span>
-                    <button class="product-cart">Add to Cart</button>
-                </div>
-            `
-            
-            mainContainerDiv.insertAdjacentHTML('beforeend', jerseyHTML);
-            
-        });
+        if (mainContainerDiv !== null) {
+            jerseysDB.forEach(jersey => {
+                const jerseyHTML = 
+                `
+                    <div class="product"> 
+                        <img src='${jersey.url}' class="product-img">
+                        <h5 class="product-desc">${jersey.description}</h5>
+                        <span class="product-price">${jersey.price}</span>
+                        <button class="product-cart">Add to Cart</button>
+                    </div>
+                `
+                
+                mainContainerDiv.insertAdjacentHTML('beforeend', jerseyHTML);
+                
+            });
+        }
     }
 }
 
@@ -92,6 +106,60 @@ class Login {
         });
         return false;
     }
+
+    static register (fullname, username, email, password) {
+        
+        let nameStatus;
+        let usernameStatus;
+        let emailStatus;
+        let passwordStatus;
+
+        if (fullname.length === 0 ||
+            fullname.match(/\d/)) {
+                console.log('wrong');
+                nameStatus = false;
+        } else nameStatus = true;
+
+        if (username.length === 0 ||
+            username.length > 10) {
+                console.log('wrong');
+                usernameStatus = false;
+        } else usernameStatus = true;
+
+        if (email.length === 0) {
+            console.log('wrong');
+            emailStatus = false;
+        } else emailStatus = true;
+
+        if (password.length === 0 ||
+            password.length > 10) {
+                console.log('wrong');
+                passwordStatus = false;
+        } else passwordStatus = true; 
+
+        
+        if (nameStatus && usernameStatus && emailStatus && passwordStatus) {
+
+            localStorage.setItem(count, JSON.stringify(
+                {
+                    name: fullname,
+                    username: username,
+                    email: email,
+                    password: password,
+                }
+            ));
+
+            // usersDB.push(JSON.parse(localStorage.getItem(usernameInput.value)));
+        }
+
+        count++;
+    }
+
+    static updateUsersDB () {
+        const users = Object.keys(localStorage).forEach(user => {
+            usersDB.push(JSON.parse(localStorage.getItem(user)));
+        });
+    }
 }
 
 // Event handlers
@@ -101,6 +169,22 @@ btnSignIn.addEventListener('click', function (e) {
     Login.isUserValid(userInput.value, passwordInput.value);
 
 });
+
+let count = 0; //key of the localStorage
+
+if (signupBtn !== null) {
+    signupBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // form validation
+
+        Login.register(fullNameInput.value, usernameInput.value, 
+            emailInput.value, passwordFormInput.value);
+
+    });
+}
+
+Login.updateUsersDB();
 
 document.addEventListener('DOMContentLoaded', UI.hideWebPage);
 document.addEventListener('DOMContentLoaded', UI.displayJerseys);
