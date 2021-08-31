@@ -22,7 +22,7 @@ body {
     color: var(--black);
 }
 
-header {
+.hero-header {
     position: relative;
     height: 70vh;
     background: linear-gradient(to right, rgba(0,0,0,.7), rgba(0,0,0,.8)), url(../img/hero.jpg);
@@ -209,3 +209,40 @@ footer > p {
     padding-top: 3rem;
     color: var(--white);
 }
+
+/* sign up */
+
+#signup-body {
+    background: linear-gradient(to right, red, blue);
+}
+
+.form-signup {
+    /* background: cyan; */
+    width: 20%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 40%;
+    margin-top: 10rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px #ccc;
+    padding: 2rem 2rem 6rem 2rem;
+}
+
+.form-signup label {
+    color: var(--white);
+    margin-top: 1rem;
+}
+
+.form-signup input {
+    padding: .5rem 0;
+    margin-top: .3rem;
+}
+
+.form-signup input:last-child {
+    margin-top: 4rem;
+    cursor: pointer;
+}
+

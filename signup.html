@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="widtd=devide-width, initial-scale=1.0">
+    
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,400&display=swap" rel="stylesheet"> 
+
+    <!-- styles -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/queries.css">
+
+    <title>Sing-Up</title>
+</head>
+<body id="signup-body">
+    <header class="signup-header">
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">item-2</a></li>
+                <li>
+                    <form class="login">
+                        <input type="text" name="user" id="user" placeholder="Username">
+                        <input type="password" name="pw" id="pw" placeholder="Password">
+                        <button id="btn-signin">Sign-In</button>
+                    </form>
+                </li>
+                <li><a href="signup.html">Sing-Up</a></li>
+                <li><a href="#"><ion-icon name="cart-outline"></ion-icon></a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <form class="form-signup">
+            <label for="full-name">Full Name</label>
+            <input type="text" name="full-name" id="full-name">
+            <label for="email">Email</label> 
+            <input type="email" name="email" id="email">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <input type="submit" value="Register" id="signup-btn">
+        </form>
+    </main>
+
+    <!-- icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- JS -->
+    <script src="js/index.js"></script>
+</body>
+</html>

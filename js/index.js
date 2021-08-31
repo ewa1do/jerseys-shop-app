@@ -53,7 +53,7 @@ const btnSignIn = document.querySelector('#btn-signin');
 
 const mainContainerDiv = document.querySelector('.main-container');
 
-const mainWeb = document.querySelector('main');
+const mainWeb = document.querySelector('.main-web');
 
 class UI { 
     static hideWebPage () {
@@ -104,3 +104,35 @@ btnSignIn.addEventListener('click', function (e) {
 
 document.addEventListener('DOMContentLoaded', UI.hideWebPage);
 document.addEventListener('DOMContentLoaded', UI.displayJerseys);
+
+// localStorage Practice
+
+// // Save data
+// localStorage.setItem('title', 'Just a title for testing purposes');
+
+// // find an element
+// const title = localStorage.getItem('title');
+// console.log(title);
+
+// const user = {
+//     name: 'Eduardo Vera',
+//     email: 'this.eduardovera@gmail.com',
+//     username: 'ewaldo',
+//     password: '1234',
+// };
+
+
+// // Save object
+// localStorage.setItem('user', JSON.stringify(user));
+
+
+// // Parse the object
+
+// const _user = JSON.parse(localStorage.getItem('user'));
+// console.log(_user);
+
+
+// // Remove an item
+
+// localStorage.removeItem('title');
+
