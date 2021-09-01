@@ -212,7 +212,8 @@ footer > p {
 
 /* sign up */
 
-#signup-body {
+#signup-body,
+#cart-body {
     background: linear-gradient(to right, red, blue);
 }
 
@@ -246,3 +247,37 @@ footer > p {
     cursor: pointer;
 }
 
+
+/* shopping cart */
+.cart-table {
+    color: var(--white);
+    width: 30%;
+    /* background: green; */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin-left: 35%;
+    margin-top: 15rem;
+    padding: 2rem;
+}
+
+.cart-table thead, 
+.cart-table tbody, 
+.cart-table tfoot {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-table thead th,
+.cart-table tfoot td {
+    padding: 0 4rem;
+}
+
+.cart-table tbody td {
+    padding: 0 2rem;
+}
+
+.cart-table tbody td > img {
+    width: 10rem;
+}

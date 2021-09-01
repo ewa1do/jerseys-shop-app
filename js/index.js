@@ -48,6 +48,8 @@ const jerseysDB = [
     },
 ];
 
+const cartDB = []; // Here im gonna store the localStorage jerseys
+
 // index.html
 const userInput = document.querySelector('#user');
 const passwordInput = document.querySelector('#pw');
@@ -64,6 +66,15 @@ const emailInput = document.querySelector('#email');
 const usernameInput = document.querySelector('#username');
 const passwordFormInput = document.querySelector('#password');
 
+// cart.html
+const tableCart = document.querySelector('.table-body');
+const cartItems = document.querySelector('.cart-items');
+const cartTotal = document.querySelector('.cart-total');
+
+const cartLength = Array.from(localStorage).length; //this keeps the cartCount updated
+
+let count = 0; //key of the localStorage for new users
+let cartCount = cartLength + 1; // counts how many keys are in the local storage
 
 class UI { 
     static hideWebPage () {
@@ -87,14 +98,111 @@ class UI {
                         <span class="product-price">${jersey.price}</span>
                         <button class="product-cart">Add to Cart</button>
                     </div>
-                `
+                `;
                 
                 mainContainerDiv.insertAdjacentHTML('beforeend', jerseyHTML);
                 
             });
         }
     }
+
+    static clearInputField (input) {
+        return input.value = '';
+    }
+
+    static createMesageSpan (style, message) {
+        return (
+            `
+            <span class="mesage-${style}">${message}</span>
+            `
+        ); 
+    }
+
+    static createMesage (message) {
+        const div = document.createElement('div');
+        const parag = document.createElement('p');
+        const text = document.createTextNode(message);
+        parag.appendChild(text);
+        div.appendChild(parag);
+    }
+
+    static displayCart() {
+        if (tableCart !== null) {
+            cartDB.forEach(jersey => {
+                const output = 
+                `
+                    <tr>
+                        <td><img src="${jersey.url}"></td>
+                        <td>${jersey.desc}</td>
+                        <td>${jersey.price}</td>
+                    <tr/>
+                `;
+
+                tableCart.insertAdjacentHTML('beforeend', output);
+            });
+            UI.displayItemsQty();
+            UI.displayTotalCost();
+        }
+    }
+
+    static displayItemsQty () {
+        cartItems.textContent += cartDB.length;
+    }
+
+    static displayTotalCost () {
+        let purchase = [];
+        let total;
+        cartDB.forEach(jersey => {
+            purchase.push(+jersey.price);
+            total = purchase.reduce((sum, price) => sum + price, 0);
+        });
+        cartTotal.textContent += total.toFixed(2);
+    }
 }
+
+class Cart {
+    static setJerseys () {
+        Array.from(mainContainerDiv.children).forEach(prod => {
+            prod.addEventListener('click', function (e) {
+                e.preventDefault();
+    
+                ++cartCount;
+
+                if (e.target.className === 'product-cart') {
+    
+                    let url;
+                    let desc;
+                    let price;
+    
+                    Array.from(e.target.parentElement.children).forEach(el => {
+                        if (el.className === 'product-img') url = el.src;
+                        if (el.className === 'product-desc') desc = el.textContent;
+                        if (el.className === 'product-price') price = el.textContent;
+                    });
+    
+                    localStorage.setItem(`Jersey${cartCount}`, JSON.stringify(
+                        {
+                            url,
+                            desc,
+                            price,
+                        }
+                    ));
+                }
+            
+            });
+        });
+    }
+
+    static getJerseys () {
+        Object.keys(localStorage).forEach(jersey => {
+            if (jersey.startsWith('Jersey')) {
+                cartDB.push(JSON.parse(localStorage.getItem(jersey)));
+            }
+        });
+    }
+
+}
+
 
 class Login {
 
@@ -116,7 +224,6 @@ class Login {
 
         if (fullname.length === 0 ||
             fullname.match(/\d/)) {
-                console.log('wrong');
                 nameStatus = false;
         } else nameStatus = true;
 
@@ -139,7 +246,6 @@ class Login {
 
         
         if (nameStatus && usernameStatus && emailStatus && passwordStatus) {
-
             localStorage.setItem(count, JSON.stringify(
                 {
                     name: fullname,
@@ -149,7 +255,11 @@ class Login {
                 }
             ));
 
-            // usersDB.push(JSON.parse(localStorage.getItem(usernameInput.value)));
+            UI.clearInputField(fullNameInput);
+            UI.clearInputField(usernameInput);
+            UI.clearInputField(emailInput);
+            UI.clearInputField(passwordFormInput);
+
         }
 
         count++;
@@ -168,16 +278,16 @@ btnSignIn.addEventListener('click', function (e) {
 
     Login.isUserValid(userInput.value, passwordInput.value);
 
+    Cart.setJerseys();
+
 });
 
-let count = 0; //key of the localStorage
 
 if (signupBtn !== null) {
     signupBtn.addEventListener('click', function (e) {
         e.preventDefault();
 
         // form validation
-
         Login.register(fullNameInput.value, usernameInput.value, 
             emailInput.value, passwordFormInput.value);
 
@@ -185,38 +295,8 @@ if (signupBtn !== null) {
 }
 
 Login.updateUsersDB();
+Cart.getJerseys();
+UI.displayCart();
 
 document.addEventListener('DOMContentLoaded', UI.hideWebPage);
 document.addEventListener('DOMContentLoaded', UI.displayJerseys);
-
-// localStorage Practice
-
-// // Save data
-// localStorage.setItem('title', 'Just a title for testing purposes');
-
-// // find an element
-// const title = localStorage.getItem('title');
-// console.log(title);
-
-// const user = {
-//     name: 'Eduardo Vera',
-//     email: 'this.eduardovera@gmail.com',
-//     username: 'ewaldo',
-//     password: '1234',
-// };
-
-
-// // Save object
-// localStorage.setItem('user', JSON.stringify(user));
-
-
-// // Parse the object
-
-// const _user = JSON.parse(localStorage.getItem('user'));
-// console.log(_user);
-
-
-// // Remove an item
-
-// localStorage.removeItem('title');
-

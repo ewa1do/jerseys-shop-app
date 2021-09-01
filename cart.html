@@ -14,13 +14,13 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" type="text/css" href="css/queries.css">
 
-    <title>Jersey-shop</title>
+    <title>Shopping Cart</title>
 </head>
-<body>
-    <header class="hero-header">
+<body id="cart-body">
+    <header class="signup-header">
         <nav class="nav-bar">
             <ul>
-                <li><a href="#">item-1</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#">item-2</a></li>
                 <li>
                     <form class="login">
@@ -38,42 +38,29 @@
                 <span class="bar"></span>
             </div>
         </nav>
-        <div class="hero-container">
-            <h1 id="hero-title">Football Warehouse</h1>
-            <h3 id="hero-sub-title">Wear the passion of your team!</h3>
-        </div>
     </header>
-    <main class="main-web">
-        <aside class="search-filters">
-            <form id="filter-form">
-                <div class="filter-league">
-                    <h4>League</h4>
-                    <label for="">Premier League</label><input type="checkbox"> <br>
-                    <label for="">Bundesliga</label><input type="checkbox"> <br>
-                    <label for="">Ligue 1</label><input type="checkbox"> <br>
-                    <label for="">Serie A</label><input type="checkbox"> <br>
-                    <label for="">La Liga</label><input type="checkbox"> <br>
-                </div>
-                <div class="filter-price">
-                    <h4>Price</h4>
-                    <label for="price">Low To High</label><input type="radio" name='price'> <br>
-                    <label for="price">High To Low</label><input type="radio" name='price'>    
-                </div>
-                <div class="filter-word">
-                    <h4>Search</h4>
-                    <input type="text" name="search-bar" id="search-bar" placeholder="Type something...">
-                </div>
-            </form>
-        </aside>
-        <div class="main-container">
-            <!-- Data injected from index.js -->
-        </div>
+    <main class="main-cart">
+        <!-- <h1>Shopping Cart</h1> -->
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th class="cart-img">Product</th>
+                    <th class="cart-name">Name</th>
+                    <th class="cart-price">Price</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+                    <!-- code injected from index.js -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><ion-icon name="cart-outline"></ion-icon></td>
+                    <td class="cart-items">N. items: </td>
+                    <td class="cart-total">Total: </td>
+                </tr>
+            </tfoot>
+        </table>
     </main>
-
-    <footer>
-        <p>Copyright &copy; 2021</p>
-    </footer>
-
 
     <!-- icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
