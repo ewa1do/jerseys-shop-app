@@ -75,6 +75,7 @@ const cartLength = Array.from(localStorage).length; //this keeps the cartCount u
 
 let count = 0; //key of the localStorage for new users
 let cartCount = cartLength + 1; // counts how many keys are in the local storage
+// let cartCount = 0;
 
 class UI { 
     static hideWebPage () {
@@ -85,6 +86,7 @@ class UI {
 
     static showWebPage () {
         mainWeb.style.display = 'block';
+        Cart.setJerseys();
     }
 
     static displayJerseys () {
@@ -101,7 +103,6 @@ class UI {
                 `;
                 
                 mainContainerDiv.insertAdjacentHTML('beforeend', jerseyHTML);
-                
             });
         }
     }
@@ -137,7 +138,6 @@ class UI {
                         <td>${jersey.price}</td>
                     <tr/>
                 `;
-
                 tableCart.insertAdjacentHTML('beforeend', output);
             });
             UI.displayItemsQty();
@@ -146,30 +146,31 @@ class UI {
     }
 
     static displayItemsQty () {
-        cartItems.textContent += cartDB.length;
+        if (cartItems !== null) cartItems.textContent += cartDB.length;
     }
 
     static displayTotalCost () {
-        let purchase = [];
-        let total;
-        cartDB.forEach(jersey => {
-            purchase.push(+jersey.price);
-            total = purchase.reduce((sum, price) => sum + price, 0);
-        });
-        cartTotal.textContent += total.toFixed(2);
+        if (cartTotal !== null) {
+            let purchase = [];
+            cartDB.forEach(jersey => {
+                purchase.push(+jersey.price);
+            });
+            cartTotal.textContent += purchase
+                .reduce((sum, price) => sum + price, 0)
+                .toFixed(2);
+        }
     }
 }
 
 class Cart {
     static setJerseys () {
+        cartCount++;
         Array.from(mainContainerDiv.children).forEach(prod => {
             prod.addEventListener('click', function (e) {
                 e.preventDefault();
-    
-                ++cartCount;
-
+                console.log(e);
                 if (e.target.className === 'product-cart') {
-    
+                    
                     let url;
                     let desc;
                     let price;
@@ -188,9 +189,8 @@ class Cart {
                         }
                     ));
                 }
-            
             });
-        });
+        }); 
     }
 
     static getJerseys () {
@@ -203,100 +203,9 @@ class Cart {
 
 }
 
-
-class Login {
-
-    static isUserValid (username, password) {
-        usersDB.forEach(user => {
-            if (username === user.username && password === user.password) {
-                UI.showWebPage();
-            }
-        });
-        return false;
-    }
-
-    static register (fullname, username, email, password) {
-        
-        let nameStatus;
-        let usernameStatus;
-        let emailStatus;
-        let passwordStatus;
-
-        if (fullname.length === 0 ||
-            fullname.match(/\d/)) {
-                nameStatus = false;
-        } else nameStatus = true;
-
-        if (username.length === 0 ||
-            username.length > 10) {
-                console.log('wrong');
-                usernameStatus = false;
-        } else usernameStatus = true;
-
-        if (email.length === 0) {
-            console.log('wrong');
-            emailStatus = false;
-        } else emailStatus = true;
-
-        if (password.length === 0 ||
-            password.length > 10) {
-                console.log('wrong');
-                passwordStatus = false;
-        } else passwordStatus = true; 
-
-        
-        if (nameStatus && usernameStatus && emailStatus && passwordStatus) {
-            localStorage.setItem(count, JSON.stringify(
-                {
-                    name: fullname,
-                    username: username,
-                    email: email,
-                    password: password,
-                }
-            ));
-
-            UI.clearInputField(fullNameInput);
-            UI.clearInputField(usernameInput);
-            UI.clearInputField(emailInput);
-            UI.clearInputField(passwordFormInput);
-
-        }
-
-        count++;
-    }
-
-    static updateUsersDB () {
-        const users = Object.keys(localStorage).forEach(user => {
-            usersDB.push(JSON.parse(localStorage.getItem(user)));
-        });
-    }
-}
-
-// Event handlers
-btnSignIn.addEventListener('click', function (e) {
-    e.preventDefault();
-
-    Login.isUserValid(userInput.value, passwordInput.value);
-
-    Cart.setJerseys();
-
-});
-
-
-if (signupBtn !== null) {
-    signupBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        // form validation
-        Login.register(fullNameInput.value, usernameInput.value, 
-            emailInput.value, passwordFormInput.value);
-
-    });
-}
-
-Login.updateUsersDB();
+// document.addEventListener('DOMContentLoaded', Cart.setJerseys);
+document.addEventListener('DOMContentLoaded', UI.displayJerseys);
+window.addEventListener('click', Cart.setJerseys);
+// document.querySelector('body').addEventListener('click', Cart.setJerseys);
 Cart.getJerseys();
 UI.displayCart();
-
-document.addEventListener('DOMContentLoaded', UI.hideWebPage);
-document.addEventListener('DOMContentLoaded', UI.displayJerseys);

@@ -249,6 +249,13 @@ footer > p {
 
 
 /* shopping cart */
+.cart-icon {
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    padding: 1rem;
+}
+
 .cart-table {
     color: var(--white);
     width: 30%;
