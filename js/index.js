@@ -1,14 +1,5 @@
 'use strict';
 
-const usersDB = [
-    {
-        name: 'Admin',
-        username: 'admin',
-        email: 'admin@admin.com',
-        password: 'admin',
-    },
-];
-
 const jerseysDB = [
     {
         name: 'Manchester United Jersey 2008-09',
@@ -56,15 +47,8 @@ const passwordInput = document.querySelector('#pw');
 const btnSignIn = document.querySelector('#btn-signin');
 
 const mainContainerDiv = document.querySelector('.main-container');
-
 const mainWeb = document.querySelector('.main-web');
 
-// signup.html
-const signupBtn = document.querySelector('#signup-btn');
-const fullNameInput = document.querySelector('#full-name');
-const emailInput = document.querySelector('#email');
-const usernameInput = document.querySelector('#username');
-const passwordFormInput = document.querySelector('#password');
 
 // cart.html
 const tableCart = document.querySelector('.table-body');
@@ -73,9 +57,7 @@ const cartTotal = document.querySelector('.cart-total');
 
 const cartLength = Array.from(localStorage).length; //this keeps the cartCount updated
 
-let count = 0; //key of the localStorage for new users
 let cartCount = cartLength + 1; // counts how many keys are in the local storage
-// let cartCount = 0;
 
 class UI { 
     static hideWebPage () {
@@ -138,7 +120,7 @@ class UI {
                         <td>${jersey.price}</td>
                     <tr/>
                 `;
-                tableCart.insertAdjacentHTML('beforeend', output);
+                tableCart.insertAdjacentHTML('afterbegin', output);
             });
             UI.displayItemsQty();
             UI.displayTotalCost();
@@ -163,34 +145,27 @@ class UI {
 }
 
 class Cart {
-    static setJerseys () {
-        cartCount++;
-        Array.from(mainContainerDiv.children).forEach(prod => {
-            prod.addEventListener('click', function (e) {
-                e.preventDefault();
-                console.log(e);
-                if (e.target.className === 'product-cart') {
-                    
-                    let url;
-                    let desc;
-                    let price;
-    
-                    Array.from(e.target.parentElement.children).forEach(el => {
-                        if (el.className === 'product-img') url = el.src;
-                        if (el.className === 'product-desc') desc = el.textContent;
-                        if (el.className === 'product-price') price = el.textContent;
-                    });
-    
-                    localStorage.setItem(`Jersey${cartCount}`, JSON.stringify(
-                        {
-                            url,
-                            desc,
-                            price,
-                        }
-                    ));
-                }
+    static setJerseys (e) {
+        if (e.target.className === 'product-cart') {
+            let url;
+            let desc;
+            let price;
+
+            Array.from(e.target.parentElement.children).forEach(el => {
+                if (el.className === 'product-img') url = el.src;
+                if (el.className === 'product-desc') desc = el.textContent;
+                if (el.className === 'product-price') price = el.textContent;
             });
-        }); 
+
+            localStorage.setItem(`Jersey${cartCount}`, JSON.stringify(
+                {
+                    url,
+                    desc,
+                    price,
+                }
+            ));
+        }
+        cartCount++;    
     }
 
     static getJerseys () {
@@ -203,9 +178,7 @@ class Cart {
 
 }
 
-// document.addEventListener('DOMContentLoaded', Cart.setJerseys);
-document.addEventListener('DOMContentLoaded', UI.displayJerseys);
-window.addEventListener('click', Cart.setJerseys);
-// document.querySelector('body').addEventListener('click', Cart.setJerseys);
+mainContainerDiv?.addEventListener('click', e => Cart.setJerseys(e));
 Cart.getJerseys();
+document.addEventListener('DOMContentLoaded', UI.displayJerseys);
 UI.displayCart();
