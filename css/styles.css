@@ -153,12 +153,11 @@ aside {
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(3, 1fr);
     margin-left: 22rem;
-    margin-top: -30rem;
     align-content: space-between;
     justify-content: space-between;
     row-gap: 5rem;
     column-gap: 3rem;
-    margin-top: -30rem;
+    margin-top: -15rem;
 }
 
 .product {
@@ -196,6 +195,7 @@ aside {
     grid-row: 5 / -1;
     grid-column: 2 / -1;
     padding: 2rem;
+    cursor: pointer;
 }
 
 footer {
@@ -246,7 +246,7 @@ footer > p {
 
 .cart-table thead th,
 .cart-table tfoot td {
-    padding: 0 4rem;
+    padding: 0 6rem;
 }
 
 .cart-table tbody td {
