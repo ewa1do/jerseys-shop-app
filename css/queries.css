@@ -10,8 +10,11 @@
     html { font-size: 47.5%; }
 
     header { height: 50vh; }
+    .hero-header { height: 25vh; }
 
     footer { height: 7vh; }
+
+    .cart-table { margin-top: -40rem; }
 
 }
 
@@ -27,15 +30,7 @@
         margin-top: 7rem;
     }
 
-    #filter-form > div {
-        display: none;
-    }
-
-    #filter-form .filter-league h4,
-    #filter-form .filter-price h4,
-    #filter-form .filter-word h4 {
-        display: none;
-    }
+    #filter-form { margin-left: 25%; }
 
     .search-filters {
         display: inline;
@@ -43,18 +38,26 @@
     }
 
 
-    .filter-league label, .filter-league input,
-    .filter-price label, .filter-price input { display: none; }
+    .cart-table {
+        width: 55%;
+        margin-left: 22.5%;
+        margin-top: -6rem;
+    }
+
+    .cart-table thead th, .cart-table tfoot td { padding: 0 7.2rem; }
+
 }
 
 @media only screen and (max-width: 600px) {
-    .nav-bar > ul {
+    /* .nav-bar > ul {
         display: none;
-    }
+    } */
 
-    .hamburger { display: block; }
+    /* .hamburger { display: block; } */
 
     header { height: 40vh; }
+
+    #filter-form { margin-left: 18%; }
 
     #hero-title { font-size: 4rem; }
     #hero-sub-title { font-size: 1.5rem; }
@@ -64,4 +67,42 @@
         width: 50%;
         margin-left: 25%;
     }
+
+
+    .cart-table {
+        width: 70%;
+        margin-left: 15%;
+        margin-top: -8rem;
+    }
 } 
+
+
+@media only screen and (max-width: 500px) {
+    .cart-table thead th, .cart-table tfoot td { padding: 0 5.5rem; }
+
+    .cart-name { display: block; }
+    .cart.items { display: block; }
+    .table-body > tr > td:nth-child(3) { display: block; }
+    .cart-table thead th, .cart-table tfoot td { padding: 0 6.2rem; }
+
+}
+
+@media only screen and (max-width: 400px) {
+    .product { padding: 0rem; }
+
+    .product-price { padding: 1rem 2rem; }
+        
+    .product-cart { padding: .8rem; }
+
+    #filter-form { margin-left: 14%; }
+    #filter-form div { margin: 1rem 1rem; }
+
+    .filter-price label { font-size: 1.2rem; }
+
+
+    .cart-name { display: none; }
+    .cart-items {display: none; }
+    .table-body > tr > td:nth-child(3) { display: none; }
+    .cart-table thead th, .cart-table tfoot td { padding: 0 5.2rem; }
+
+}

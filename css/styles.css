@@ -95,7 +95,7 @@ transform: translate(-50%, -50%);
 }
 
 aside {
-    width: 15%;
+    /* width: 15%; */
     display: block;
 }
 
@@ -107,7 +107,33 @@ aside {
 }
 
 #filter-form {
-    display: block;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin-left: 32%;
+}
+
+#filter-form div {
+    margin: 1rem 3rem;
+}
+
+.filter-price {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    /* align-items: flex-end; */
+}
+
+.filter-price label:not(:first-of-type) {
+    padding: 0 2.4rem;
+}
+
+.filter-price input:first-of-type {
+    margin-left: .5rem;
+}
+
+.filter-price input:last-of-type {
+    margin-left: -2rem;
 }
 
 #filter-form .filter-league h4,
@@ -145,6 +171,10 @@ aside {
 .filter-word > input {
     margin-top: 1rem;
     margin-left: .3rem;
+    border: none;
+    border-bottom: 1px solid #333;
+    padding-bottom: .2rem;
+    outline: none;
 }
 
 .main-container {
@@ -152,12 +182,12 @@ aside {
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(3, 1fr);
-    margin-left: 22rem;
+    margin-left: 10%;
     align-content: space-between;
     justify-content: space-between;
     row-gap: 5rem;
     column-gap: 3rem;
-    margin-top: -15rem;
+    margin-top: 2rem;
 }
 
 .product {
@@ -232,8 +262,8 @@ footer > p {
     justify-content: center;
     /* align-content: center; */
     flex-direction: column;
-    margin-left: 35%;
-    margin-top: 15rem;
+    margin-left: 30%;
+    margin-top: 10rem;
     padding: 2rem;
 }
 
