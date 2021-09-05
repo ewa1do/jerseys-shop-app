@@ -5,7 +5,7 @@ const jerseysDB = [
         name: 'Manchester United Jersey 2008-09',
         description: 'Cristiano Ronaldo Home Shirt #7 Season 2008-09',
         league: 'Premier League',
-        price: 79.99,
+        price: 59.99,
         url: 'https://dnre29p915wg3.cloudfront.net/media/tr:w-299,h-299,cm-pad_resize,bg-FFFFFF/catalog/product/m/a/man-united-07-home-boys-ronaldo-cp_2_2.jpg',
     },
     {
@@ -19,7 +19,7 @@ const jerseysDB = [
         name: 'FC Barcelona Jersey 2019-20',
         description: 'Leo Messi Home Shirt #10 Season 2019-20',
         league: 'La Liga',
-        price: 99.99,
+        price: 89.99,
         url: 'https://dnre29p915wg3.cloudfront.net/media/tr:w-299,h-299,cm-pad_resize,bg-FFFFFF/catalog/product/b/a/barcelona-19-home-special-weallplay-back_2_1.jpg',
     },
     {
@@ -33,7 +33,7 @@ const jerseysDB = [
         name: 'AC Milan Jersey 2021-22',
         description: 'Zlatan Ibrahimovic Home Shirt #11 Season 2021-22',
         league: 'Serie A',
-        price: 99.99,
+        price: 79.99,
         url: 'https://media.nextopia.net/6d7ddad62cf3be5eb212c968adb23cda/0b54cd8c0eb2010f02da7b30a3772580.jpg?wm=0&h=299&w=299&bg=FFFFFF&eh=2&src=https%3A%2F%2Fdnre29p915wg3.cloudfront.net%2Fmedia%2Fcatalog%2Fproduct%2Fa%2Fc%2Fac-milan-21-home-ibrahimovic.jpg',
     },
     {
@@ -56,6 +56,8 @@ const mainContainerDiv = document.querySelector('.main-container');
 const mainWeb = document.querySelector('.main-web');
 
 const searchbar = document.getElementById('search-bar');
+const lowRadioBtn = document.getElementById('high');
+const highRadioBtn = document.querySelector('#low');
 
 
 // cart.html
@@ -68,9 +70,9 @@ const cartLength = Array.from(localStorage).length; //this keeps the cartCount u
 let cartCount = cartLength + 1; // counts how many keys are in the local storage
 
 class UI { 
-    static displayJerseys () {
+    static displayJerseys (db) {
         if (mainContainerDiv !== null) {
-            jerseysDB.forEach(jersey => {
+            db.forEach(jersey => {
                 const jerseyHTML = 
                 `
                     <div class="product"> 
@@ -102,8 +104,24 @@ class UI {
         });
     }
 
-    static clearInputField (input) {
-        return input.value = '';
+    static sortJerseysLowToHigh () {
+        const jerseysSorted = jerseysDB.sort((a, b) => a.price - b.price);
+
+        [...mainContainerDiv.children].forEach(prod => {
+            prod.style.display = 'none';
+        });
+
+        UI.displayJerseys(jerseysSorted);
+    }
+
+    static sortJerseysHightoLow () {
+        const jerseysSorted = jerseysDB.sort((a, b) => b.price - a.price);
+
+        [...mainContainerDiv.children].forEach(prod => {
+            prod.style.display = 'none';
+        });
+
+        UI.displayJerseys(jerseysSorted);
     }
 
     static displayCart() {
@@ -127,7 +145,7 @@ class UI {
     }
 
     static displayItemsQty () {
-        if (cartItems !== null) cartItems.textContent = cartDB.length;
+        if (cartItems !== null) cartItems.textContent = `N. Items: ${cartDB.length}`;
     }
 
     static displayTotalCost () {
@@ -194,6 +212,8 @@ class Cart {
 mainContainerDiv?.addEventListener('click', e => Cart.setJerseys(e));
 tableCart?.addEventListener('click', e => UI.removeCartItem(e));
 Cart.getJerseys();
-document.addEventListener('DOMContentLoaded', UI.displayJerseys);
+document.addEventListener('DOMContentLoaded', UI.displayJerseys(jerseysDB));
 UI.displayCart();
 searchbar?.addEventListener('keyup', UI.searchJersey);
+lowRadioBtn?.addEventListener('click', UI.sortJerseysLowToHigh);
+highRadioBtn?.addEventListener('click', UI.sortJerseysHightoLow);
