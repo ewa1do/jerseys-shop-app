@@ -93,25 +93,15 @@ class UI {
 
         const league = [...document.querySelectorAll('span.league')];
     
-        // league.forEach(league => {
-        //     const span = league.textContent.toLowerCase();
+        league.forEach(league => {
+            const span = league.textContent.toLowerCase();
             
-        //     if (span.indexOf(filterValue) > -1) {
-        //         league.parentElement.parentNode.style.display = '';
-        //     } else {
-        //         league.parentElement.parentNode.style.display = 'none';
-        //     }
-        // });
-
-        for (let i = 0; i <= 5; i++) {
-            const span = league[i].textContent.toLowerCase();
-
             if (span.indexOf(filterValue) > -1) {
-                league[i].parentElement.parentNode.style.display = '';
+                league.parentElement.parentNode.style.display = '';
             } else {
-                league[i].parentElement.parentNode.style.display = 'none';
+                league.parentElement.parentNode.style.display = 'none';
             }
-        }
+        });
     }
 
     static sortJerseysLowToHigh () {
