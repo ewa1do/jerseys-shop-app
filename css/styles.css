@@ -214,7 +214,8 @@ footer > p {
 
 #signup-body,
 #cart-body {
-    background: linear-gradient(to right, red, blue);
+    background: linear-gradient(to right, royalblue, purple);
+    background-size: cover;
 }
 
 .form-signup {
@@ -249,6 +250,7 @@ footer > p {
 
 
 /* shopping cart */
+
 .cart-icon {
     font-size: 1.5rem;
     border: 1px solid #ccc;
@@ -258,15 +260,16 @@ footer > p {
 
 .cart-table {
     color: var(--white);
-    width: 30%;
+    width: 40%;
     /* background: green; */
     display: flex;
     justify-content: center;
-    align-content: center;
+    /* align-content: center; */
     flex-direction: column;
     margin-left: 35%;
     margin-top: 15rem;
     padding: 2rem;
+ 
 }
 
 .cart-table thead, 
@@ -287,4 +290,20 @@ footer > p {
 
 .cart-table tbody td > img {
     width: 10rem;
+}
+
+.table-body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 30rem;
+}
+
+.close {
+    color: red;
+    text-shadow: 2px 2px 2px #222;
+    cursor: pointer;
+}
+
+.close > span {
+    display: none;
 }

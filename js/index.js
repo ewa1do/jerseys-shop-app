@@ -39,7 +39,7 @@ const jerseysDB = [
     },
 ];
 
-const cartDB = []; // Here im gonna store the localStorage jerseys
+let cartDB = []; // Here im gonna store the localStorage jerseys
 
 // index.html
 const userInput = document.querySelector('#user');
@@ -60,17 +60,6 @@ const cartLength = Array.from(localStorage).length; //this keeps the cartCount u
 let cartCount = cartLength + 1; // counts how many keys are in the local storage
 
 class UI { 
-    static hideWebPage () {
-        if (mainWeb !== null) {
-            mainWeb.style.display = 'none';
-        }
-    }
-
-    static showWebPage () {
-        mainWeb.style.display = 'block';
-        Cart.setJerseys();
-    }
-
     static displayJerseys () {
         if (mainContainerDiv !== null) {
             jerseysDB.forEach(jersey => {
@@ -93,28 +82,14 @@ class UI {
         return input.value = '';
     }
 
-    static createMesageSpan (style, message) {
-        return (
-            `
-            <span class="mesage-${style}">${message}</span>
-            `
-        ); 
-    }
-
-    static createMesage (message) {
-        const div = document.createElement('div');
-        const parag = document.createElement('p');
-        const text = document.createTextNode(message);
-        parag.appendChild(text);
-        div.appendChild(parag);
-    }
-
     static displayCart() {
         if (tableCart !== null) {
             cartDB.forEach(jersey => {
+
                 const output = 
                 `
                     <tr>
+                        <td class="close">X<span>${jersey.ID}</span></td>
                         <td><img src="${jersey.url}"></td>
                         <td>${jersey.desc}</td>
                         <td>${jersey.price}</td>
@@ -122,13 +97,13 @@ class UI {
                 `;
                 tableCart.insertAdjacentHTML('afterbegin', output);
             });
-            UI.displayItemsQty();
-            UI.displayTotalCost();
+            this.displayItemsQty();
+            this.displayTotalCost();
         }
     }
 
     static displayItemsQty () {
-        if (cartItems !== null) cartItems.textContent += cartDB.length;
+        if (cartItems !== null) cartItems.textContent = cartDB.length;
     }
 
     static displayTotalCost () {
@@ -140,6 +115,15 @@ class UI {
             cartTotal.textContent += purchase
                 .reduce((sum, price) => sum + price, 0)
                 .toFixed(2);
+        }
+    }
+
+    static removeCartItem (e) {
+        if (e.target.className === 'close') {
+            const id = e.target.textContent.slice(1);
+            Cart.removeJersey(id);
+            e.target.parentElement.remove();
+            location.reload();
         }
     }
 }
@@ -162,6 +146,7 @@ class Cart {
                     url,
                     desc,
                     price,
+                    ID: `Jersey${cartCount}`,
                 }
             ));
         }
@@ -176,9 +161,14 @@ class Cart {
         });
     }
 
+    static removeJersey(key) {
+        localStorage.removeItem(key);
+    }
+
 }
 
 mainContainerDiv?.addEventListener('click', e => Cart.setJerseys(e));
+tableCart?.addEventListener('click', e => UI.removeCartItem(e));
 Cart.getJerseys();
 document.addEventListener('DOMContentLoaded', UI.displayJerseys);
 UI.displayCart();
