@@ -12,7 +12,7 @@ const jerseysDB = [
         name: 'Real Madrid Jersey 2016-17',
         description: 'Gareth Bale Home Shirt #11 Season 2016-17',
         league: 'La Liga',
-        price: 99.99,
+        price: 79.99,
         url: 'https://dnre29p915wg3.cloudfront.net/media/tr:w-299,h-299,cm-pad_resize,bg-FFFFFF/catalog/product/r/e/real-madrid-16-home-bale_1_2_3.jpg',
     },
     {
@@ -33,7 +33,7 @@ const jerseysDB = [
         name: 'AC Milan Jersey 2021-22',
         description: 'Zlatan Ibrahimovic Home Shirt #11 Season 2021-22',
         league: 'Serie A',
-        price: 79.99,
+        price: 99.99,
         url: 'https://media.nextopia.net/6d7ddad62cf3be5eb212c968adb23cda/0b54cd8c0eb2010f02da7b30a3772580.jpg?wm=0&h=299&w=299&bg=FFFFFF&eh=2&src=https%3A%2F%2Fdnre29p915wg3.cloudfront.net%2Fmedia%2Fcatalog%2Fproduct%2Fa%2Fc%2Fac-milan-21-home-ibrahimovic.jpg',
     },
     {
@@ -93,35 +93,44 @@ class UI {
 
         const league = [...document.querySelectorAll('span.league')];
     
-        league.forEach(league => {
-            const span = league.textContent.toLowerCase();
+        // league.forEach(league => {
+        //     const span = league.textContent.toLowerCase();
             
+        //     if (span.indexOf(filterValue) > -1) {
+        //         league.parentElement.parentNode.style.display = '';
+        //     } else {
+        //         league.parentElement.parentNode.style.display = 'none';
+        //     }
+        // });
+
+        for (let i = 0; i <= 5; i++) {
+            const span = league[i].textContent.toLowerCase();
+
             if (span.indexOf(filterValue) > -1) {
-                league.parentElement.parentNode.style.display = '';
+                league[i].parentElement.parentNode.style.display = '';
             } else {
-                league.parentElement.parentNode.style.display = 'none';
+                league[i].parentElement.parentNode.style.display = 'none';
             }
-        });
+        }
     }
 
     static sortJerseysLowToHigh () {
-        const jerseysSorted = jerseysDB.sort((a, b) => a.price - b.price);
+        const jerseysSortedL = jerseysDB.sort((a, b) => a.price - b.price);
 
         [...mainContainerDiv.children].forEach(prod => {
-            prod.style.display = 'none';
+            prod.remove();
         });
 
-        UI.displayJerseys(jerseysSorted);
+        UI.displayJerseys(jerseysSortedL);
     }
 
     static sortJerseysHightoLow () {
-        const jerseysSorted = jerseysDB.sort((a, b) => b.price - a.price);
+        const jerseysSortedH = jerseysDB.sort((a, b) => b.price - a.price);
 
         [...mainContainerDiv.children].forEach(prod => {
-            prod.style.display = 'none';
+            prod.remove();
         });
-
-        UI.displayJerseys(jerseysSorted);
+        UI.displayJerseys(jerseysSortedH);
     }
 
     static displayCart() {
