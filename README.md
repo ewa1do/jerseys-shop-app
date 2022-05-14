@@ -1,4 +1,4 @@
-# jerseys-shop-app
-Shopping app using html, css and js with localStorage
+# Football Warehouse
 
-For testing purposes try username: admin, password: admin
+### Simple shopping app creted using html, css and js with localStorage
+
