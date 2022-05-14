@@ -1,6 +1,6 @@
 # Football Warehouse
 
-## [!DEMO](https://footballwh.netlify.app/)
+## [DEMO](https://footballwh.netlify.app/)
 
 ### Simple shopping app creted using html, css and js with localStorage
 
